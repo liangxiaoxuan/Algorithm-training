@@ -1,4 +1,4 @@
-# Algorithm-training
+# Traninng Plan
 
 ## 1.Leetcode: Python / SQL
 
