@@ -1,2 +1,7 @@
+# Traninng Plan
 
-###Time Complexity: How much time an algorithms needs
+## 1.Leetcode: Python / SQL
+
+## 2.Algorithm class notes ： 
+
+## 3. AWS 
