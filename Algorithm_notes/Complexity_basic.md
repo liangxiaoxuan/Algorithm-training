@@ -1,5 +1,5 @@
-# Complexity basics
+## Complexity basics
 
-## time complexity： How much times an algorithm needs 
+### *Time complexity*： How much times an algorithm needs 
 
 
