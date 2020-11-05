@@ -55,6 +55,7 @@ def
 # Explanation: Your function should return length = 2, with the first two elements of nums being 2.
 # It doesn't matter what you leave beyond the returned length. For example if you return 2 with nums = [2,2,3,3] or nums = [2,3,0,0], your answer will be accepted.
 
+def
 
 
 
@@ -66,3 +67,4 @@ def
 # Input: nums = [1,3,5,6], target = 5
 # Output: 2
 
+def
