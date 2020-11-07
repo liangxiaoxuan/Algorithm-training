@@ -67,10 +67,13 @@ def remove_duplicate2(nums):
 # Explanation: Your function should return length = 2, with the first two elements of nums being 2.
 # It doesn't matter what you leave beyond the returned length. For example if you return 2 with nums = [2,2,3,3] or nums = [2,3,0,0], your answer will be accepted.
 
-def
-
-
-
+def remove_element(nums,val):
+    n = 0
+    for i in nums:
+        if i == val:
+            del nums[n]
+        n += 1
+    print(len(nums))
 
 
 # 4.Search Insert Position
@@ -79,4 +82,49 @@ def
 # Input: nums = [1,3,5,6], target = 5
 # Output: 2
 
+def Search_Insert_Position(nums, val):
+
+    for i, num in enumerate(nums):
+        if num == val:
+            if len(nums) == 1:
+                print(0)
+                return 0
+            else:
+                print(i)
+                return i
+        else:
+            if i > 0 and (i == len(nums) or abs(val - nums[i - 1]) < abs(val - nums[i])):
+                print(nums[i-1], i-1)
+                return nums[i-1]
+  不会
+
+
+#11.06
+# 5.Maximum Subarray
+# Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+# Follow up: If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
+# Example 1:
+
+# Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+# Output: 6
+# Explanation: [4,-1,2,1] has the largest sum = 6.
+
+
+ 
+
+
+# 6.Plus One
+# Given a non-empty array of decimal digits representing a non-negative integer, increment one to the integer.
+# The digits are stored such that the most significant digit is at the head of the list, and each element in the array contains a single digit.
+# You may assume the integer does not contain any leading zero, except the number 0 itself.
+
+# Example 1:
+
+# Input: digits = [1,2,3]
+# Output: [1,2,4]
+# Explanation: The array represents the integer 123.
+
 def
+
+ 
+
