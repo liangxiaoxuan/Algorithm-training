@@ -26,9 +26,9 @@ Write a SQL query for a report that provides the following information for each 
 FirstName, LastName, City, State
 
 **ans**
-select FirstName, LastName, City, State from person left
-join address
-on person.personid = address.personid;
+select FirstName, LastName, City, State 
+from person left
+join address on person.personid = address.personid;
 
 
 2.Write a SQL query to get the second highest salary from the Employee table.
@@ -50,9 +50,9 @@ For example, given the above Employee table, the query should return 200 as the 
 
 ##limit y offset x 分句表示: 跳过 x 条数据，读取 y 条数据
 **ans**
-SELECT DISTINCT
+select distinct
     Salary AS SecondHighestSalary
-FROM
+from
     Employee
 ORDER BY Salary DESC
 LIMIT 1 OFFSET 1
@@ -78,6 +78,13 @@ Given the Employee table, write a SQL query that finds out employees who earn mo
 +----------+
 
 **ans**
+select E.name as Employee 
+from Employee E
+join Employee as M on E.ManagerId = M.Id
+where E.salary > M.salary
+
+## E 和 M talbes 呈现经过条件转换后的表
+
 
 
 4.Write a SQL query to find all duplicate emails in a table named Person.
@@ -98,6 +105,11 @@ For example, your query should return the following for the above table:
 +---------+
 
 **ans**
+select email
+from person
+group by Email
+having count(Email) >1
+
 
 
 5.Suppose that a website contains two tables, the Customers table and the Orders table. Write a SQL query to find all customers who never order anything.
@@ -122,6 +134,10 @@ Table: Orders.
 +----+------------+
 
 **ans**
+select C.name as Customers
+from customers c
+where c.id not in 
+(select o.customerid from orders o)
 
 
 
@@ -145,4 +161,7 @@ For example, after running your query, the above Person table should have the fo
 +----+------------------+
 
 **ans**
+DELETE FROM Person WHERE Id NOT IN 
+(SELECT * FROM(
+    SELECT MIN(Id) FROM Person GROUP BY Email) as p);
 
