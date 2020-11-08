@@ -1,4 +1,4 @@
-Table: Person
+1.Table: Person
 
 +-------------+---------+
 | Column Name | Type    |
@@ -26,7 +26,9 @@ Write a SQL query for a report that provides the following information for each 
 FirstName, LastName, City, State
 
 **ans**
-
+select FirstName, LastName, City, State from person left
+join address
+on person.personid = address.personid;
 
 
 2.Write a SQL query to get the second highest salary from the Employee table.
@@ -46,7 +48,14 @@ For example, given the above Employee table, the query should return 200 as the 
 | 200                 |
 +---------------------+
 
+##limit y offset x 分句表示: 跳过 x 条数据，读取 y 条数据
 **ans**
+SELECT DISTINCT
+    Salary AS SecondHighestSalary
+FROM
+    Employee
+ORDER BY Salary DESC
+LIMIT 1 OFFSET 1
 
 
 
