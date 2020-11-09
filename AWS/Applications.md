@@ -5,5 +5,5 @@
 *
 2.Must have globally unique name <br>
 3.Buckets are defined at the regin level <br>
-4.Must start with lowercase letter or number 
-!(https://github.com/liangxiaoxuan/Algorithm-training/blob/main/AWS/images/S3.png)
+4.Must start with lowercase letter or number <br>
+![image](https://github.com/liangxiaoxuan/Algorithm-training/blob/main/AWS/images/S3.png)
