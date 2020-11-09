@@ -82,21 +82,27 @@ def remove_element(nums,val):
 # Input: nums = [1,3,5,6], target = 5
 # Output: 2
 
+# Example 3:
+
+# Input: nums = [1,3,5,6], target = 7
+# Output: 4
+
 def Search_Insert_Position(nums, val):
 
-    for i, num in enumerate(nums):
-        if num == val:
-            if len(nums) == 1:
-                print(0)
-                return 0
-            else:
-                print(i)
+    if val > max(nums):
+        return len(nums)
+
+    else:
+        for i, num in enumerate(nums):
+            if num == val:
                 return i
-        else:
-            if i > 0 and (i == len(nums) or abs(val - nums[i - 1]) < abs(val - nums[i])):
-                print(nums[i-1], i-1)
-                return nums[i-1]
-  不会
+            elif num < val:
+                pass
+            elif num > val:
+                return i
+  
+# exp:
+#     比如[1,3,5,6] target=4， 循环到3的时候，pass；循环到5的时候，5>target，插入target到5的左边，数组变成[1,3,4,5,6]，return target的index， 还是2
 
 
 #11.06
