@@ -6,6 +6,6 @@
 3.Buckets are defined at the regin level <br>
 4.Must start with lowercase letter or number <br>
 ![image](https://github.com/liangxiaoxuan/Algorithm-training/blob/main/AWS/images/S3.png)
-5.S3 lifecycle rules: <br>
-![image](https://github.com/liangxiaoxuan/Algorithm-training/blob/main/AWS/images/S3.png)
+5.*S3 lifecycle rules*: <br>
+![image](https://github.com/liangxiaoxuan/Algorithm-training/blob/main/AWS/images/S3_lifecycle.png)
 
