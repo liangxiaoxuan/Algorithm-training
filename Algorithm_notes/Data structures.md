@@ -1,2 +1,0 @@
-
-# Traninng Plan
