@@ -10,7 +10,6 @@
 
 def reverse(x):
 
-
     if x < 0:
         x = abs(x)
         a = str(x)
