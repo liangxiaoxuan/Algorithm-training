@@ -10,6 +10,7 @@
 # Input: s = "()[]{}"
 # Output: true
 
+
 def isValid(s):
     """
 
