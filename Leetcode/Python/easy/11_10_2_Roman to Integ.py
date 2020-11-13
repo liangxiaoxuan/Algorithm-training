@@ -34,13 +34,20 @@ v = {"I": 1,
 
 
 def romanToInt(s):
-    v1 = v["I"]
-    print(v1)
-    a = 23
 
+    r = 0
+    l = len(s)
+    i = 0
+    while(i < l):
+        if v[s[i]] < v[s[i+1]]:
+            print(v[s[i+1]]-v[s[i]])
+
+
+
+    #print(r)
 
 
 if __name__ == '__main__':
-    s = "III"
-    #s = 1234
+    #s = "LVIII"
+    s = "MCMXCIV"
     romanToInt(s)
