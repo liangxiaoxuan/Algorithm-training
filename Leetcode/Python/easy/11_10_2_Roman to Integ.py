@@ -38,16 +38,29 @@ def romanToInt(s):
     r = 0
     l = len(s)
     i = 0
-    while(i < l):
-        if v[s[i]] < v[s[i+1]]:
-            print(v[s[i+1]]-v[s[i]])
+    while i < l:
 
+        #print(i)
+        r += v[s[i]]
+        # print(r)
+        if i-1 < 0:
+            i2 = 0
+        else:
+            i2 = i-1
+        if v[s[i2]] < v[s[i]]:
+            # print(2*v[s[i2]])
+            r -= 2*v[s[i2]]
+            # print(s[i])
 
+        i += 1
+    print(r)
+    return r
 
-    #print(r)
+# Runtime: 48 ms, faster than 29.02%
+# Memory Usage: 13.6 MB, less than 7.46%
 
 
 if __name__ == '__main__':
-    #s = "LVIII"
-    s = "MCMXCIV"
+    s = "LVIII"
+    #s = "MCMXCIV"
     romanToInt(s)
