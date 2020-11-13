@@ -24,12 +24,23 @@
 # Input: s = "III"
 # Output: 3
 
-def romanToInt(s):
+v = {"I": 1,
+     "V": 5,
+     "X": 10,
+     "L": 50,
+     "C": 100,
+     "D": 500,
+     "M": 1000}
 
-    s = str(s)
-    print(s[1::-1])
+
+def romanToInt(s):
+    v1 = v["I"]
+    print(v1)
+    a = 23
+
+
 
 if __name__ == '__main__':
-    #s = "III"
-    s = 1234
+    s = "III"
+    #s = 1234
     romanToInt(s)
