@@ -22,6 +22,9 @@ def strStr(haystack, needle):
         print(result)
         return result
 
+# Runtime: 8 ms, faster than 99.61% o
+# Memory Usage: 13.7 MB, less than 70.80%
+
 
 if __name__ == '__main__':
     # haystack = "hello"
