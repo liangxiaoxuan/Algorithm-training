@@ -17,8 +17,20 @@ def removeDuplicates(nums):
     :type nums: List[int]
     :rtype: int
     """
+    i = 0
+    while (i < len(nums)-1):
+        if nums[i] == nums[i+1]:
+            del nums[i]
+        else:
+            i += 1
+    print(nums)
+    return len(nums)
+
+# Runtime: 80 ms, faster than 36.58%
+# Memory Usage: 15.3 MB, less than 15.57%
 
 
 if __name__ == '__main__':
-    nums = [1, 1, 2 ]
+    #nums = [1, 1, 2]
+    nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
     removeDuplicates(nums)

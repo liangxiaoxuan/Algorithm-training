@@ -12,8 +12,20 @@ def mergeTwoLists(l1, l2):
     :rtype: ListNode
     """
 
+    if not l1: return l2
+    if not l2: return l1
+
+    result = l1 + l2
+    result = sorted(result)
+
+    print(l1)
+    print(result)
+    return result
+
+## ??
+
 
 if __name__ == '__main__':
-    l1 = [1,2,4]
+    l1 = [1, 2, 4]
     l2 = [1, 3, 4]
-    mergeTwoLists(l1,l2)
+    mergeTwoLists(l1, l2)

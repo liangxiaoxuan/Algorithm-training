@@ -8,14 +8,24 @@
 # Output: 2
 
 
-def strStr(self, haystack, needle):
+def strStr(haystack, needle):
     """
     :type haystack: str
     :type needle: str
     :rtype: int
     """
+    if haystack == "" and needle == "":
+        return 0
+    else:
+
+        result = haystack.find(needle)
+        print(result)
+        return result
 
 
 if __name__ == '__main__':
-    haystack = "hello"
-    needle = "11"
+    # haystack = "hello"
+    # needle = "ll"
+    haystack = "aaaaa"
+    needle = "bba"
+    strStr(haystack, needle)

@@ -12,20 +12,33 @@ def longestCommonPrefix(strs):
     :type strs: List[str]
     :rtype: str
     """
-    i = 0
-    i2 = i+1
+
     result = []
     for n in range(len(min(strs))):
-        print(n)
+        i = 0
+        i2 = i + 1
+
         while (strs[i][n] == strs[i2][n]):
-            if i2 == len(strs)-1 :
+            if i2 == len(strs)-1 and strs[i][n] == strs[i2][n]:
+                result.append(strs[i][n])
                 break
             else:
-
                 i += 1
                 i2 += 1
+        else:
+            result.append("")
+            break
+    str = ""
+    result2 = str.join(result)
+    print(result2)
+    return result2
+
+# Runtime Error
+# min() arg is an empty sequence
 
 
 if __name__ == '__main__':
-    strs = ["flower", "flow", "flight"]
+    #strs = ["flower", "flow", "flgg", "flag"]
+    #strs = ["dog","racecar","car"]
+    strs = []
     longestCommonPrefix(strs)

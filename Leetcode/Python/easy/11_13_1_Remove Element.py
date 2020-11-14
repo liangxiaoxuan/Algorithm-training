@@ -19,9 +19,20 @@ def removeElement(nums, val):
     :type val: int
     :rtype: int
     """
+    i = 0
+    while (i < len(nums)):
+        if nums[i] == val:
+            del nums[i]
+        else:
+            i += 1
+    print(nums)
+    return len(nums)
+
+# Runtime: 24 ms, faster than 39.10%
+# Memory Usage: 13.4 MB, less than 52.15%
 
 
 if __name__ == '__main__':
-    nums = [3,2,2,3]
+    nums = [3, 2, 2, 3]
     val = 3
     removeElement(nums,val)
