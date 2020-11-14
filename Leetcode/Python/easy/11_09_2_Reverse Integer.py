@@ -28,8 +28,9 @@ def reverse(x):
         print(r)
         return r
 
-##Runtime: 24 ms, faster than 42.23%
-##Memory Usage: 13.5 MB, less than 17.26%
+
+# Runtime: 24 ms, faster than 42.23%
+# Memory Usage: 13.5 MB, less than 17.26%
 
 
 if __name__ == '__main__':

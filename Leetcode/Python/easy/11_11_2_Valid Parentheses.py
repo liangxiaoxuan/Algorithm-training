@@ -18,6 +18,7 @@ def isValid(s):
     :return: bool
     """
     # 完全没思路
+    # stack
     for i in s:
 
         if "()" or "{" in s:

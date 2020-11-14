@@ -40,7 +40,7 @@ def romanToInt(s):
     i = 0
     while i < l:
 
-        #print(i)
+        # print(i)
         r += v[s[i]]
         # print(r)
         if i-1 < 0:
@@ -62,5 +62,5 @@ def romanToInt(s):
 
 if __name__ == '__main__':
     s = "LVIII"
-    #s = "MCMXCIV"
+    # s = "MCMXCIV"
     romanToInt(s)

@@ -28,8 +28,8 @@ def isPalindrome(x):
             return False
 
 
-#Runtime: 44 ms, faster than 87.88%
-#Memory Usage: 13.5 MB, less than 17.65%
+# Runtime: 44 ms, faster than 87.88%
+# Memory Usage: 13.5 MB, less than 17.65%
 
 
 if __name__ == '__main__':

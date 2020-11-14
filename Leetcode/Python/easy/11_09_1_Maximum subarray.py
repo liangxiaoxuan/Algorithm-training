@@ -8,17 +8,17 @@
 # Explanation: [4,-1,2,1] has the largest sum = 6.
 
 
-def Maximum_Subarray(nums): # Kadane's algorithm
+def Maximum_Subarray(nums):  # Kadane's algorithm
 
     currSum = nums[0]
     maxSum = nums[0]
     for i in range(1, len(nums)):
         currSum = max(nums[i], currSum + nums[i]) # 将前一个数加起来，比较若加起来和比自身小选自身数
-        maxSum = max(maxSum, currSum) # 比较哪个subarray比较大
+        maxSum = max(maxSum, currSum)  # 比较哪个subarray比较大
     print(maxSum)
     return maxSum
 
 
 if __name__ == '__main__':
-    nums = [-1,3,5,7,-5]
+    nums = [-1, 3, 5, 7, -5]
     Maximum_Subarray(nums)

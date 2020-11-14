@@ -18,7 +18,7 @@ def longestCommonPrefix(strs):
         i = 0
         i2 = i + 1
 
-        while (strs[i][n] == strs[i2][n]):
+        while strs[i][n] == strs[i2][n]:
             if i2 == len(strs)-1 and strs[i][n] == strs[i2][n]:
                 result.append(strs[i][n])
                 break

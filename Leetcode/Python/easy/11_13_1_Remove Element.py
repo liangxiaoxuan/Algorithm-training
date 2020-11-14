@@ -20,7 +20,7 @@ def removeElement(nums, val):
     :rtype: int
     """
     i = 0
-    while (i < len(nums)):
+    while i < len(nums):
         if nums[i] == val:
             del nums[i]
         else:
