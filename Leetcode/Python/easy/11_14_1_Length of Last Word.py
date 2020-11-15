@@ -13,9 +13,20 @@ def lengthOfLastWord(s):
     :type s: str
     :rtype: int
     """
+    s = s.strip()
+    s1 = s.split((" "))
 
+    if len(s1) == 0:
+
+        return 0
+
+    else:
+        s2 = s1[len(s1)-1]
+        result = len(s2)
+
+        return result
 
 
 if __name__ == '__main__':
     s = "Hello World"
-    lengthOfLastWord(s)
+    print(lengthOfLastWord(s))

@@ -17,6 +17,8 @@
 # countAndSay(4) = say "21" = one 2 + one 1 = "12" + "11" = "1211"
 
 
+# 我读不懂这个题想要干嘛
+
 def countAndSay(n):
     """
     :type n: int
