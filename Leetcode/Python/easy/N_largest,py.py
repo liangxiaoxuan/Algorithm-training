@@ -21,7 +21,7 @@ def third_largest(array: list):
             num3 = i
         elif i > num4:
             num4 = i
-    return num4
+    return num1
 
 
 if __name__ == '__main__':

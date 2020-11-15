@@ -17,16 +17,23 @@ def isValid(s):
     :param s: str
     :return: bool
     """
-    # 完全没思路
+
     # stack
+    count = 0
     for i in s:
 
-        if "()" or "{" in s:
-            print(i)
+        if "(" or "[" or "{" == i:
+            count += 1
+        else:
+            count -= 1
+        #if count < 0 or count
+
+    if count == 0:
+        return True
 
 
 if __name__ == '__main__':
+    s = "([}}"
+    #s = "()}"
 
-    s = "()}"
-
-    isValid(s)
+    print(isValid(s))
