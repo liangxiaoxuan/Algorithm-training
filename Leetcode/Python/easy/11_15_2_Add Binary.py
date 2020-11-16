@@ -4,6 +4,7 @@
 #
 # Input: a = "1010", b = "1011"
 # Output: "10101"
+# binary alg: 1 + 1 = 10
 
 
 def Binary(a, b):
