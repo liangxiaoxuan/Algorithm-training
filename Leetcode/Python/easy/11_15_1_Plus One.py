@@ -16,8 +16,25 @@ def plusOne(digits):
     :type digits: List[int]
     :rtype: List[int]
     """
+    l = len(digits)-1
+    while l >= 0:
+        if digits[l] == 9:
+            digits[l] = 0
+        else:
+            digits[l] += 1
+            return digits
+        l -= 1
+        if digits[l] == 0:
+            digits2 = [1] + digits
+            return digits2
+
+    print(digits)
+
+# runtime: 16 ms, faster than 89.48%
+# Memory Usage: 13.6 MB, less than 11.94%
 
 
 if __name__ == '__main__':
-    digits = [1, 2, 3]
-    plusOne(digits)
+    digits = [9, 9, 9]
+    print(plusOne(digits))
+
