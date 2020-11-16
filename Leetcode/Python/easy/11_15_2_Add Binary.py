@@ -36,7 +36,7 @@ def Binary(a, b):
 
 def addBinary(a, b):
     print(a[-1::])
-    
+
 
 if __name__ == '__main__':
     a ="1234"

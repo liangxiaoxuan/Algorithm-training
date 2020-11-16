@@ -18,22 +18,33 @@ def isValid(s):
     :return: bool
     """
 
-    # stack
-    count = 0
-    for i in s:
+    # stack: First in Last out
+    st = []
+    for i in range(len(s)):
+        if s[i] == "(" or s[i] == "[" or s[i] == "{":
+            st.insert(0, s[i])
 
-        if "(" or "[" or "{" == i:
-            count += 1
         else:
-            count -= 1
-        #if count < 0 or count
+            if st:  # 非空list
+                tmp = st.pop(0)  # 把index=0的value推出stack
 
-    if count == 0:
+            else:
+                return False
+
+            if tmp == "(" and s[i] != ")":
+                return False
+            if tmp == "[" and s[i] != "]":
+                return False
+            if tmp == "{" and s[i] != "}":
+                return False
+
+    if st:
+        return False
+    else:
         return True
 
 
 if __name__ == '__main__':
-    s = "([}}"
-    #s = "()}"
-
+    s = "([{}]]"
+    #s = "(())"
     print(isValid(s))

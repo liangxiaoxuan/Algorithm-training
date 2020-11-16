@@ -11,7 +11,8 @@ def valid_parentheses(s: str):
             count += 1
         else:
             count -= 1
-        if count < 0 or count > 1:
+
+        if count < 0:
             return False
 
     if count == 0:
@@ -22,4 +23,5 @@ def valid_parentheses(s: str):
 
 if __name__ == '__main__':
     s = "((()()"
+    #s = "(())"
     print(valid_parentheses(s))
