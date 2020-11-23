@@ -11,6 +11,7 @@ for i in range(10):
     list.pop(0)  # 从index=0开始pop off一个value
 
 ```
+### Dynamitc program ：动态规划 （算过的在递归不算第二次）
 
 
 
