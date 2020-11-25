@@ -14,4 +14,4 @@ def fib(n):
 
 if __name__ == '__main__':
     n = 3
-    fib(n)
+    print(fib(n))

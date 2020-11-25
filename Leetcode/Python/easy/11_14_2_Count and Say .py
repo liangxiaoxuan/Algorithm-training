@@ -18,15 +18,45 @@
 # countAndSay(4) = say "21" = one 2 + one 1 = "12" + "11" = "1211"
 
 
-# 我读不懂这个题想要干嘛
-
 def countAndSay(n):
     """
     :type n: int
     :rtype: str
     """
-    
+    # c.s(1) = "1" —— 1
+    # c.s(2) = "11" —— say(c.s(1)) (result)
+    # c.s(3) = "21" —— say(c.s(2)) (result)
+
+    # say()
+    def say(v):
+        #v = str(v)
+        i = 0
+        n1 = list(v)
+        while i < len(n1) - 1:
+            if n1[i] == n1[i + 1]:
+                del n1[i]
+            else:
+                i += 1
+        n2 = "".join(n1)
+
+        result = []
+        for ii in n2:
+
+            s = n2.count("1")  ## 这里一直有问题
+
+            result.append(str(s))
+            result.append(str(ii))
+        result = "".join(result)
+        #print(result)
+        return result
+
+    if n == 1:
+        return "1"
+    if n >= 2:
+        return say(countAndSay(n-1))
+
 
 if __name__ == '__main__':
-    n = 1
-    countAndSay(n)
+    n = 3
+
+    print(countAndSay(n))

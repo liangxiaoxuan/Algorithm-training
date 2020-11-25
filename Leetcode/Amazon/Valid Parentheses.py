@@ -45,6 +45,6 @@ def isValid(s):
 
 
 if __name__ == '__main__':
-    s = "([{}]]"
+    s = "([{])}"
     #s = "(())"
     print(isValid(s))

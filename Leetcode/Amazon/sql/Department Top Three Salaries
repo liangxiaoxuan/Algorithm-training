@@ -1,0 +1,7 @@
+1. Department Top Three Salaries:
+
+select t1.Department,t1.Employee,t1.Salary from
+(select e.Name as Employee , e.Salary as Salary, d.Name as Department, dense_rank() over (partition by d.Name order by Salary Desc) as rnk from Employee e
+left join Department d on e.DepartmentId = d.Id) t1
+where rnk <= 3 and t1.Department is not null
+
