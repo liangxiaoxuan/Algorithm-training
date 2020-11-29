@@ -14,21 +14,23 @@ def longestsub2(s):  # 若没有重复字母就一直append，若重复了之前
     for i in range(len(s)):
         if s[i] not in temp:
             temp.append(s[i])
-            print(temp)
+            # print(temp)
         else:
             ans = max(ans, len(temp))
             idx = temp.index(s[i])
-            temp = temp[idx + 1:]
-            temp.append(s[i])
-            print(temp)
+            temp = temp[idx+1:]   # 从重复的后一位有接着开始 不断分片
+            temp.append(s[i])     # 把去掉的之前的s[i] 再补回来接着
+            # print(temp)
 
-    ans = max(ans, len(temp))
-    return ans
+    ans = max(ans, len(temp))   # 对比最后的分片的temp和之前的最大值
+    return temp
 
 
 if __name__ == '__main__':
-    s = "abcb"
-    print(longestsub2(s))
+    s = "abcbb"
+    #print()
+    longestsub2(s)
+    #print(longestsub2(s))
 
 
 
