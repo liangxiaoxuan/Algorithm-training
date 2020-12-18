@@ -1,0 +1,15 @@
+EC2 CONNECT pUTTY
+
+1. Create an EC2 instance and get the key pair .pem file
+2. Using Puttygen create .ppk file
+	1. load the .pem file to Puttygen and create a private Key, which is .ppk file for Putty access
+3.Putty:
+	Host e: instance name @ copy Public IPv4 DNS from EC2 instance
+	        after create EC2---choose connect---SSH client
+	SSH : Auth: load the .ppk file into putty 
+
+
+EMR CONNECT pUTTY
+
+1.Create a EMR cluster using EC2 master node that we create before
+2. set up another master DNS : "Connect to the Master Node Using SSH"
