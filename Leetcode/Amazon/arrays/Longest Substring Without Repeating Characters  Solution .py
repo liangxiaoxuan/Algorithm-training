@@ -1,3 +1,4 @@
+# coding=utf-8
 # Given a string s, find the length of the longest substring without repeating characters.
 
 # Example 1:
@@ -22,15 +23,15 @@ def longestsub2(s):  # 若没有重复字母就一直append，若重复了之前
             temp.append(s[i])     # 把去掉的之前的s[i] 再补回来接着
             # print(temp)
 
-    ans = max(ans, len(temp))   # 对比最后的分片的temp和之前的最大值
-    return temp
+    ans = max(ans, len(temp))   # 对比最后的分片的temp和之前的最大值 # 对比的收拾length
+    return ans
 
 
 if __name__ == '__main__':
-    s = "abcbb"
+    s = "abcabcbb"
     #print()
-    longestsub2(s)
-    #print(longestsub2(s))
+    #longestsub2(s)
+    print(longestsub2(s))
 
 
 

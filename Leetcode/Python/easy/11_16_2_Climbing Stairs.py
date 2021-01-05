@@ -18,7 +18,18 @@ def climbStairs(n):
     :rtype: int
     """
 
+# fibonacci sequence
+    if n == 0 or n == 1 or n == 2:
+        return n
+
+    s1 = 1
+    s2 = 2
+    for i in range(2, n):
+        s2 += s1
+        s1 = s2 - s1
+    return s2
+
 
 if __name__ == '__main__':
-    n= 3
-    climbStairs(n)
+    n = 7
+    print(climbStairs(n))

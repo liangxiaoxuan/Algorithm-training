@@ -23,8 +23,9 @@ def Search_Insert_Position(nums, val):
             elif num > val:
                 return i
 # exp:
-#     比如[1,3,5,6] target=4， 循环到3的时候，pass；循环到5的时候，5>target，
-#     插入target到5的左边，数组变成[1,3,4,5,6]，return target的index， 还是2
+# 比如[1,3,5,6] target=4， 循环到3的时候，pass；循环到5的时候，5>target，
+# 插入target到5的左边，数组变成[1,3,4,5,6]，return target的index， 还是2
+
 
 if __name__ == '__main__':
     nums = [1,2,4,5,6]

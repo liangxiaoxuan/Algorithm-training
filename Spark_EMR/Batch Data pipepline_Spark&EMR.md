@@ -1,4 +1,4 @@
-
+# coding=utf-8
 
 ### Spark: 
 in memory, fast batch computation framework, with rich set of APIs including SparkSQL, PySpark, SparkR
@@ -23,13 +23,15 @@ dict: Spark_EMR/pUTTY connect EC2&EMR
         aws s3 cp s3://sundog-spark/MovieSimilarities1M.py ./ (s3 py file)
         aws s3 cp s3://sundog-spark/ml-1m/movies.dat ./   （用于look up 的file）
         spark-submit --executor-memory 1g MovieSimilarities1M.py 260
+        # Spark-sql
+        spark-sql-file.py
 
 #### 4.Troubleshooting cluster jobs
 
 #### 5.Spark RDD transformation: map / flatmap / Reduce --- RDD just data placeholder 
 
 ```python
-from pyspark import SparkContest
+from pyspark import SparkConf, SparkContext
 
 # initializing Spark
 conf = SparkConf()  # For configuring Spark.
@@ -60,11 +62,12 @@ y = l.map(lambda x : (x,x**2)
 #### 6.RDD get Data from hdfs
 * After RDD transformation --- will trigger a spark job ---  retrieve data from hdfs to RDD 
 
-#### 7.SparkSQL (DataFrame and Dataset)
+#### 7.SparkSQL (DataFrame and Dataset) # SparkSession内部封装了SparkContext
 ```python
+# coding=utf-8
 
 from pyspark.sql import SparkSession, Row
-spark = SparkSession.builder.appName("SparkSQL").getOrCreate()
+spark = SparkSession.builder.appName("SparkSQL").getOrCreate()  
 inputData = spark.read.json("dataFile")
 inputData.createOrReplaceTempView("myStructuredStuff")  # it looks like DB table
 myResultDataFrame = spark.sql("sql scripts")
@@ -78,6 +81,7 @@ myResultDataFrame.groupBy(myResultDataFrame("someFileName")).mean()
 myResultDataFrame.rdd().map("mapperfunction")
 
 
+
 ```
 
 * Extend RDD to a "DataFrame" object 
@@ -89,9 +93,55 @@ myResultDataFrame.rdd().map("mapperfunction")
     3.Connect using bin/beeline -u jdbc:hive2://localhost:10000
     4.Have SQL shell to Spark SQL
     5.Can create new tables, or query existing ones that were cached using hiveCtx.cacheTable("tablename")
+* sparksql-Rdd / sparksql-dataframe: spark-sql-file.py
+  
+* DataFrame more fit for structured data
+* Using SQL Functions:
+```python
+
+from pyspark.sql import functions as func
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.appName("SparkSQL").getOrCreate()
+func.explode()   # similar to flatmap; explodes columns into rows
+inputDF = spark.read.text("file:///SparkCourse/book.txt")
+func.split(inputDF.value."\\W+")
+func.col("columnName")  # to refer to a column
+func.lower()
+
+```
+#### 8. Shared variables: 节点间共享内容
+* Broadcast variables (shared variable or shard datasets):
+    1. Spark automatically broadcasts the common data needed by tasks within each stage. The data broadcasted this way 
+is cached in serialized form and deserialized before running each task 
+       
+* Accumulators: "added"
+    1. each task in a executor will add this accumulator variable. (先分后总)
+    
+```python
+from pyspark.sql import SparkSession
+from pyspark import SparkConf, SparkContext
+spark = SparkSession.builder.appName("NameoftheApp").getOrCreate()
+
+broadcasteVar = spark.sparkContext.broadcast(["value"])
+broadcasteVar.value  # show ["value"]
+
+conf = SparkConf().setMaster("local").setAppName("DegreesOfSeparation")
+sc = SparkContext(conf = conf)
+accum = sc.accumulator(0)  # initial value of 0  
+# can be a counter = 0 which in python while loop, increment the counter
+accum.add(1)
 
 
+
+```
+
+
+#### 9.Spark Graphx: Breath-First Search (iterative) :广度优先搜索算法： 查找最短路径
+
+#### 10.Accumulators
  
+
+
 
 
 

@@ -1,3 +1,4 @@
+# coding=utf-8
 # Find all string which is a combination of [‘1’,’a’,’z’,’b’,’b’,’2’,’9’] (cannot be replaced back)
 # and ‘number’ cannot be the first letter of the string, and word character cannot be the last letter.
 #
@@ -39,4 +40,10 @@ def combinationlist(s):
 
 if __name__ == '__main__':
     s = ["1", "a", "2", "b", "b", "2", "9"]
-    print(len(combinationlist(s)))
+    #print(len(combinationlist(s)))
+
+    l = [1 , 2, 3, 4]
+    #list2 = list(filter(lambda x: x%2 == 0, l))
+
+    list3 = map(lambda x: (x,x % 2==0), l)
+    print list3

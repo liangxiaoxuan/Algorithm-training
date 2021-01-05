@@ -14,9 +14,10 @@ def remove_duplicate(nums):
         if i not in result:
             result.append(i)
     print(len(result), result)
-    return print(result)
+    return result
 
-### Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+# Do not allocate extra space for another array,
+# you must do this by modifying the input array in-place with O(1) extra memory.
 
 
 def remove_duplicate2(nums):
