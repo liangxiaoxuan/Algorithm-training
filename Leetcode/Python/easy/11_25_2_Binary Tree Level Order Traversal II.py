@@ -34,7 +34,8 @@ class Solution(object):
         """
         levels = []
         if not root:
-            return levels = []
+            return levels
+
 
 
 
