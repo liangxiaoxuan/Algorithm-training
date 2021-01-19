@@ -1,10 +1,11 @@
 #Boilerplate stuff:
 from pyspark import SparkConf, SparkContext
 
-conf = SparkConf().setMaster("local").setAppName("DegreesOfSeparation")
-sc = SparkContext(conf=conf)
 
-# The characters we wish to find the degree of separation between:
+conf = SparkConf().setMaster("local").setAppName("DegreesOfSeparation")
+sc = SparkContext(conf = conf)
+
+# The characters we wish to find the degree of separation between:  # 多少层才能到target
 startCharacterID = 5306 # SpiderMan
 targetCharacterID = 14  # ADAM 3,031 (who?)
 
@@ -20,9 +21,11 @@ def convertToBFS(line):
     for connection in fields[1:]:
         connections.append(int(connection))
 
+    # initial color and distance
     color = 'WHITE'
     distance = 9999
 
+    # if itself then color and distance=0
     if heroID == startCharacterID:
         color = 'GRAY'
         distance = 0
@@ -30,17 +33,18 @@ def convertToBFS(line):
     return heroID, (connections, distance, color)
 
 
+# iteration each line of graph -- output: list
 def createStartingRdd():
     inputFile = sc.textFile("file:///sparkcourse/marvel-graph.txt")
     return inputFile.map(convertToBFS)
 
 
-def bfsMap(node):
-    characterID = node[0]
-    data = node[1]
-    connections = data[0]
-    distance = data[1]
-    color = data[2]
+def bfsMap(node):                    # node == createStartingRdd() ----heroID, (connections, distance, color)
+    characterID = node[0]  # heroID
+    data = node[1]         # (connections, distance, color)
+    connections = data[0]  # connections
+    distance = data[1]     # distance
+    color = data[2]        # color
 
     results = []
 
@@ -60,11 +64,12 @@ def bfsMap(node):
         color = 'BLACK'
 
     # Emit the input node so we don't lose it.
-    results.append((characterID, (connections, distance, color)) )
+    results.append( (characterID, (connections, distance, color)))
     return results
 
 
 def bfsReduce(data1, data2):
+
     edges1 = data1[0]
     edges2 = data2[0]
     distance1 = data1[1]
@@ -91,7 +96,7 @@ def bfsReduce(data1, data2):
         distance = distance2
 
     # Preserve darkest color
-    if color1 == 'WHITE' and (color2 == 'GRAY' or color2 == 'BLACK'):
+    if color1 == 'WHITE' and (color2 == 'GRAY' or 'BLACK'):
         color = color2
 
     if color1 == 'GRAY' and color2 == 'BLACK':
@@ -100,7 +105,7 @@ def bfsReduce(data1, data2):
     if color2 == 'WHITE' and (color1 == 'GRAY' or color1 == 'BLACK'):
         color = color1
 
-    if color2 == 'GRAY' and color1 == 'BLACK':
+    if color2 == 'GRAY' and 'BLACK':
         color = color1
 
     return edges, distance, color
@@ -126,6 +131,10 @@ for iteration in range(0, 10):
             + " different direction(s).")
         break
 
-    # Reducer combines data for each character ID, preserving the darkest
+    # Reducer combines data for each character ID, preserving the darkest:
+    #
     # color and shortest path.
     iterationRdd = mapped.reduceByKey(bfsReduce)
+
+    # (key，value)
+    # iterationRdd will keep changing by reduce

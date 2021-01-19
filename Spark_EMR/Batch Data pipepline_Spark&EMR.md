@@ -79,20 +79,18 @@ myResultDataFrame.filter(myResultDataFrame("someFileName" > 200))
 myResultDataFrame.groupBy(myResultDataFrame("someFileName")).mean()
 # turn back to RDD
 myResultDataFrame.rdd().map("mapperfunction")
-
-
-
 ```
+
 
 * Extend RDD to a "DataFrame" object 
 * DataFrame: MLlib and Spaek Streaming are moving toward using DataFrames instead of Rdd
 * Dataset: More in Scala
 * SparkSQL exposes a JDBC/ODBC server (if you built Spark with Hive support)
-    1.Start it with sbin/start-thriftserver.sh
-    2.Listens on port 10000 by default
-    3.Connect using bin/beeline -u jdbc:hive2://localhost:10000
-    4.Have SQL shell to Spark SQL
-    5.Can create new tables, or query existing ones that were cached using hiveCtx.cacheTable("tablename")
+    - Start it with sbin/start-thriftserver.sh
+    - Listens on port 10000 by default
+    - Connect using bin/beeline -u jdbc:hive2://localhost:10000
+    - Have SQL shell to Spark SQL
+    - Can create new tables, or query existing ones that were cached using hiveCtx.cacheTable("tablename")
 * sparksql-Rdd / sparksql-dataframe: spark-sql-file.py
   
 * DataFrame more fit for structured data
@@ -109,36 +107,79 @@ func.col("columnName")  # to refer to a column
 func.lower()
 
 ```
-#### 8. Shared variables: 节点间共享内容
-* Broadcast variables (shared variable or shard datasets):
-    1. Spark automatically broadcasts the common data needed by tasks within each stage. The data broadcasted this way 
+#### 8. Shared variables: 节点间共享内容 -- 不同的node访问同一个变量时
+* Broadcast variables (shared variable or shard datasets): 分布式只读共享变量
+    - Spark automatically broadcasts the common data needed by tasks within each stage. The data broadcasted this way 
 is cached in serialized form and deserialized before running each task 
-       
-* Accumulators: "added"
-    1. each task in a executor will add this accumulator variable. (先分后总)
-    
+    - Use spark.broadcast() to ship off whatever you want 
+    - Use .value() to get the object back 
 ```python
 from pyspark.sql import SparkSession
 from pyspark import SparkConf, SparkContext
 spark = SparkSession.builder.appName("NameoftheApp").getOrCreate()
 
-broadcasteVar = spark.sparkContext.broadcast(["value"])
+broadcasteVar = spark.sparkContext.broadcast()
 broadcasteVar.value  # show ["value"]
+
+```
+       
+* Accumulators: "added"：分布式只写共享变量-- 共享变量一直在改变
+    - each task in a executor will add this accumulator variable. (先分后总)
+    
+```python
+from pyspark.sql import SparkSession
+from pyspark import SparkConf, SparkContext
 
 conf = SparkConf().setMaster("local").setAppName("DegreesOfSeparation")
 sc = SparkContext(conf = conf)
 accum = sc.accumulator(0)  # initial value of 0  
 # can be a counter = 0 which in python while loop, increment the counter
-accum.add(1)
+accum.add(1)  # add any value to accumulator 
+accum.value # Get the accumulated value 
+```
+
+#### 9.Spark Graphx: Breath-First Search (iterative) :广度优先搜索算法： 查找最短路径
+
+#### 10. read into RDD VS Dataframe
+```python
+from pyspark import SparkConf, SparkContext
+conf = SparkConf().setMaster("local").setAppName("DegreesOfSeparation")
+sc = SparkContext(conf = conf)
+
+# RDD
+rdd=sc.textFile("/path_to_csv_file_in_HDFS/factbook.csv")
+mappedRdd= rdd.map(lambda x:x.split(";"))  # transformation
+mappedRdd.collect() # Action
+
+# DataFrame
+# 1.Convert entire RDD to Data Frame
+#getting header
+headerRdd=sc.textFile("/path_to_csv_file_in_HDFS/factbook.csv").map(lambda x:x.split(";")).take(1)[0]
+
+#Convert Entire CSV to DF 
+df=sc.textFile("/path_to_csv_file_in_HDFS/factbook.csv").map(lambda x:x.split(";")).filter(lambda x:x[0]!='Country' and x[0]!='String').toDF(headerRdd)
+
+#Convert SELECTED COLUMNS FROM CSV to DF 
+from pyspark.sql import Row
+df=sc.textFile("/path_to_csv_file_in_HDFS/factbook.csv").map(lambda x:x.split(";")).filter(lambda x:x[0]!='Country' and x[0]!='String').map(lambda x:Row(country=x[0],birth_rate=x[1],death_rate=x[4],gdp=x[9],highway_km=x[15],import_=x[16],export_=x[8])).toDF()
+
+#Show the DF in tabular format
+df.show(5)
+
+# DataFrame (DF) to SQL Temp Table in HIVE
+df.registerTempTable("factbook")
+mySelectQuery=sqlContext.sql("SELECT * FROM factbook")
+mySelectQuery.show(3)
 
 
+# load data into DataFrame
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.config("spark.sql.warehouse.dir").appName("jsontransformation").getOrCreate()
+df = spark.read.text("path").rdd
 
 ```
 
 
-#### 9.Spark Graphx: Breath-First Search (iterative) :广度优先搜索算法： 查找最短路径
-
-#### 10.Accumulators
  
 
 

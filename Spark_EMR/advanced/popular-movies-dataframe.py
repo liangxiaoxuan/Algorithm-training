@@ -11,7 +11,7 @@ schema = StructType([ \
                      StructField("rating", IntegerType(), True), \
                      StructField("timestamp", LongType(), True)])
 
-# Load up movie data as dataframe
+# Load up movie data as dataframe # \t : re: space
 moviesDF = spark.read.option("sep", "\t").schema(schema).csv("file:///SparkCourse/ml-100k/u.data")
 
 # Some SQL-style magic to sort all movies by popularity in one line!

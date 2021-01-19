@@ -46,4 +46,3 @@ if __name__ == '__main__':
     #list2 = list(filter(lambda x: x%2 == 0, l))
 
     list3 = map(lambda x: (x,x % 2==0), l)
-    print list3
